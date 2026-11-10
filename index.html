@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ธีรภัทร์ มินิมาร์ท | ของครบ ใกล้บ้าน ส่งฟรีถึงหน้าประตู</title>
+    <meta name="description" content="ธีรภัทร์ มินิมาร์ท ร้านของชำและมินิมาร์ทชุมชน สินค้าสดใหม่ ของใช้ครบครัน สั่งซื้อง่ายผ่าน LINE ส่งฟรีถึงหน้าบ้าน">
+
+    <!-- Google Fonts: Prompt & Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        heading: ['Kanit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        line: '#06C755',
+                        lineHover: '#05b34c'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-800">
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white text-xs sm:text-sm py-2 px-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2 overflow-hidden whitespace-nowrap">
+                <span class="inline-flex items-center gap-1.5 bg-white/20 px-2.5 py-0.5 rounded-full text-xs font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-300 pulse-dot"></span>
+                    เปิดบริการทุกวัน
+                </span>
+                <span class="hidden sm:inline">🕒 06:00 - 22:00 น.</span>
+                <span class="text-white/60">•</span>
+                <span class="font-medium text-emerald-100">🛵 ส่งฟรีในชุมชน / ระยะ 2 กม. เมื่อสั่งครบ 100.-</span>
+            </div>
+            <div class="hidden md:flex items-center gap-4 text-xs">
+                <a href="tel:0891234567" class="hover:underline flex items-center gap-1 text-white/90 hover:text-white">
+                    <i class="fa-solid fa-phone"></i> 089-123-4567
+                </a>
+                <span class="text-white/40">|</span>
+                <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="hover:underline flex items-center gap-1 text-white/90 hover:text-white">
+                    <i class="fa-brands fa-line text-sm"></i> @theeraphat_mart
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-store text-xl sm:text-2xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-heading font-bold text-xl sm:text-2xl text-slate-800 tracking-tight group-hover:text-emerald-600 transition-colors">
+                                ธีรภัทร์ <span class="text-emerald-600">มินิมาร์ท</span>
+                            </span>
+                        </div>
+                        <p class="text-[11px] sm:text-xs text-slate-500 font-light -mt-0.5">ของครบ ใกล้บ้าน สั่งส่งได้ทันที</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-600">
+                    <a href="#home" class="hover:text-emerald-600 transition-colors">หน้าแรก</a>
+                    <a href="#how-to-order" class="hover:text-emerald-600 transition-colors">วิธีสั่งของ</a>
+                    <a href="#promotions" class="hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+                        <span>โปรโมชั่น</span>
+                        <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">HOT</span>
+                    </a>
+                    <a href="#products" class="hover:text-emerald-600 transition-colors">หมวดหมู่สินค้า</a>
+                    <a href="#services" class="hover:text-emerald-600 transition-colors">บริการของเรา</a>
+                    <a href="#contact" class="hover:text-emerald-600 transition-colors">ข้อมูลติดต่อ</a>
+                </nav>
+
+                <!-- Actions: Cart & Quick Order -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Quick Call Button (Desktop) -->
+                    <a href="tel:0891234567" class="hidden sm:inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition active:scale-95">
+                        <i class="fa-solid fa-phone text-emerald-600"></i>
+                        <span>โทรสั่งด่วน</span>
+                    </a>
+
+                    <!-- Cart Drawer Trigger Button -->
+                    <button onclick="openCartDrawer()" class="relative bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80 px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition active:scale-95 shadow-sm">
+                        <i class="fa-solid fa-basket-shopping text-base sm:text-lg"></i>
+                        <span class="hidden xs:inline">ตะกร้า</span>
+                        <!-- Cart Badge -->
+                        <span id="nav-cart-badge" class="hidden bg-emerald-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center -mr-1">
+                            0
+                        </span>
+                    </button>
+
+                    <!-- LINE Order Button (Desktop) -->
+                    <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="hidden md:inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition-all duration-200 active:scale-95">
+                        <i class="fa-brands fa-line text-lg"></i>
+                        <span>สั่งผ่าน LINE</span>
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none transition" aria-label="เมนู">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-5 space-y-2">
+            <a href="#home" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm">หน้าแรก</a>
+            <a href="#how-to-order" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm">วิธีสั่งของ</a>
+            <a href="#promotions" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm flex items-center justify-between">
+                <span>โปรโมชั่นสุดคุ้ม</span>
+                <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full">ลดราคา</span>
+            </a>
+            <a href="#products" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm">หมวดหมู่สินค้าทั้งหมด</a>
+            <a href="#services" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm">บริการส่งถึงบ้าน & การชำระเงิน</a>
+            <a href="#contact" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-sm">ข้อมูลร้าน & แผนที่</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="tel:0891234567" class="flex items-center justify-center gap-2 bg-slate-100 text-slate-700 py-2.5 rounded-xl text-sm font-medium">
+                    <i class="fa-solid fa-phone text-emerald-600"></i> โทรสั่งด่วน 089-123-4567
+                </a>
+                <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="flex items-center justify-center gap-2 bg-[#06C755] text-white py-2.5 rounded-xl text-sm font-medium shadow-sm">
+                    <i class="fa-brands fa-line text-lg"></i> แอด LINE สั่งสินค้า
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden hero-gradient pt-8 pb-16 lg:pt-16 lg:pb-24 border-b border-emerald-100/60">
+        <!-- Background decorative blobs -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -left-20 w-80 h-80 bg-teal-200/25 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Column: Copy & Actions -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Delivery Highlight Badge -->
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                        <i class="fa-solid fa-motorcycle text-emerald-600"></i>
+                        <span>บริการเดลิเวอรี่ส่งถึงบ้านในชุมชน</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.15]">
+                        ของชำครบวงจร <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">
+                            ส่งตรงถึงหน้าบ้าน
+                        </span>
+                        สะดวก สบายใจ
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        ไม่ต้องตากแดด ไม่ต้องหิ้วหนัก! <strong>ธีรภัทร์ มินิมาร์ท</strong> มีทั้งข้าวสาร ไข่ไก่สด เครื่องดื่ม ขนม และของใช้ในบ้าน สั่งผ่าน LINE หรือโทรสั่งได้ทันที ส่งฟรีเมื่อยอดครบ 100 บาท
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                        <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#06C755] hover:bg-[#05b34c] text-white px-7 py-3.5 rounded-2xl text-base font-semibold shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 transition-all duration-200 active:scale-95 group">
+                            <i class="fa-brands fa-line text-2xl group-hover:scale-110 transition-transform"></i>
+                            <span>แชทสั่งของผ่าน LINE</span>
+                        </a>
+
+                        <a href="tel:0891234567" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 hover:border-emerald-300 px-6 py-3.5 rounded-2xl text-base font-semibold shadow-sm transition-all duration-200 active:scale-95">
+                            <i class="fa-solid fa-phone text-emerald-600"></i>
+                            <span>โทรด่วน 089-123-4567</span>
+                        </a>
+
+                        <button onclick="openCartDrawer()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 px-5 py-3.5 rounded-2xl text-base font-medium transition-all">
+                            <i class="fa-solid fa-basket-shopping text-emerald-600"></i>
+                            <span>ดูตะกร้าสินค้า</span>
+                        </button>
+                    </div>
+
+                    <!-- Trust Points / USPs -->
+                    <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0">
+                        <div class="text-left">
+                            <div class="flex items-center gap-1.5 text-emerald-600 font-heading font-semibold text-sm sm:text-base">
+                                <i class="fa-solid fa-shield-check"></i>
+                                <span>สดใหม่ทุกวัน</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">ไข่ไก่ ผัก เครื่องปรุงคัดเกรด</p>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-1.5 text-emerald-600 font-heading font-semibold text-sm sm:text-base">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                <span>ส่งฟรี 100.- ขึ้นไป</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">ในระยะ 2 กม./ในหมู่บ้าน</p>
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center gap-1.5 text-emerald-600 font-heading font-semibold text-sm sm:text-base">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span>สแกนจ่ายง่าย</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">พร้อมเพย์ / บัตรฯ / เงินสด</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Showcase Card -->
+                <div class="lg:col-span-5 relative">
+                    <!-- Main Hero Card -->
+                    <div class="relative bg-white rounded-3xl p-4 sm:p-5 shadow-xl shadow-slate-200/70 border border-emerald-100 overflow-hidden">
+                        <!-- Top status bar inside card -->
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="font-semibold text-slate-700">ธีรภัทร์ มินิมาร์ท พร้อมให้บริการ</span>
+                            </div>
+                            <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">จัดส่งใน 15-30 นาที</span>
+                        </div>
+
+                        <!-- Hero Main Image -->
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" 
+                                 alt="ธีรภัทร์ มินิมาร์ท ร้านขายของชำและสะดวกซื้อชุมชน" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                <div class="text-white">
+                                    <span class="bg-amber-400 text-slate-900 text-[11px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">ร้านประจำของคนในชุมชน</span>
+                                    <h3 class="font-heading font-bold text-lg text-white mt-1">สินค้าสดใหม่ สะอาด ราคาสบายกระเป๋า</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Highlights Row -->
+                        <div class="grid grid-cols-2 gap-3 mt-4">
+                            <div class="bg-emerald-50/80 rounded-xl p-3 border border-emerald-100 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-basket-shopping text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500">สินค้าในร้าน</div>
+                                    <div class="font-heading font-semibold text-slate-800 text-sm">กว่า 500+ รายการ</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50/80 rounded-xl p-3 border border-amber-100 flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-lg bg-amber-500 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-clock text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500">เวลาทำการ</div>
+                                    <div class="font-heading font-semibold text-slate-800 text-sm">06:00 - 22:00 น.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge: Free Delivery -->
+                    <div class="absolute -bottom-6 -left-4 sm:-left-6 bg-white rounded-2xl p-3.5 shadow-lg border border-slate-100 flex items-center gap-3 animate-float max-w-[240px]">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+                        <div>
+                            <div class="font-heading font-bold text-slate-800 text-sm">ส่งฟรีถึงหน้าบ้าน!</div>
+                            <div class="text-[11px] text-slate-500">สั่งครบ 100 บาท ในละแวก 2 กม.</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge: Scan to Pay -->
+                    <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-3 shadow-lg border border-slate-100 flex items-center gap-2.5 animate-float-delayed">
+                        <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-base">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <div>
+                            <div class="font-heading font-bold text-slate-800 text-xs">รับสแกนทุกธนาคาร</div>
+                            <div class="text-[10px] text-slate-400">PromptPay / สแกนจ่าย</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: 3 STEPS HOW TO ORDER -->
+    <section id="how-to-order" class="py-14 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-emerald-600 font-semibold text-xs tracking-wider uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                    สั่งง่าย ไม่ยุ่งยาก
+                </span>
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-3">
+                    สั่งของจากร้านธีรภัทร์ ง่ายๆ แค่ 3 ขั้นตอน
+                </h2>
+                <p class="text-slate-500 text-sm sm:text-base mt-2">
+                    เลือกวิธีที่สะดวกที่สุดสำหรับคุณ จะกดเลือกใส่ตะกร้าในเว็บ หรือทัก LINE ส่งรูปมาบอกเลยก็ได้
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Connector Line on Desktop -->
+                <div class="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-dashed border-t-2 border-dashed border-emerald-200 -translate-y-8 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 bg-slate-50/80 hover:bg-emerald-50/50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:border-emerald-200 text-center transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl mx-auto mb-5 shadow-md shadow-emerald-600/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase">ขั้นตอนที่ 1</span>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mt-1 mb-2">เลือกสินค้าที่ต้องการ</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        เลือกดูรายการสินค้าและกดเพิ่มลงตะกร้าบนเว็บ หรือจดรายการสิ่งของที่ต้องการสั่งไว้
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 bg-slate-50/80 hover:bg-emerald-50/50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:border-emerald-200 text-center transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-2xl bg-[#06C755] text-white flex items-center justify-center text-2xl mx-auto mb-5 shadow-md shadow-[#06C755]/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-line"></i>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase">ขั้นตอนที่ 2</span>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mt-1 mb-2">ทัก LINE หรือ โทรบอก</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        กดปุ่มสั่งซื้อเพื่อส่งรายการเข้า LINE ทางร้านจะเช็กของและสรุปยอดให้ทันที
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 bg-slate-50/80 hover:bg-emerald-50/50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:border-emerald-200 text-center transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl mx-auto mb-5 shadow-md shadow-amber-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase">ขั้นตอนที่ 3</span>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mt-1 mb-2">รอรับของหน้าบ้าน & สแกนจ่าย</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        สินค้าส่งถึงหน้าบ้านใน 15-30 นาที ตรวจเช็กของเรียบร้อยแล้วจ่ายเงินสดหรือสแกน QR Code ได้เลย
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quick Action in Steps -->
+            <div class="mt-10 text-center">
+                <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-semibold text-sm sm:text-base underline underline-offset-4 decoration-emerald-300 hover:decoration-emerald-600 transition">
+                    <span>แอด LINE ของร้านเพื่อเริ่มสั่งของ (@theeraphat_mart)</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FLASH SALE & WEEKLY PROMOTIONS -->
+    <section id="promotions" class="py-14 sm:py-20 bg-emerald-50/40 border-y border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header with Countdown Timer -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 text-red-600 font-semibold text-xs uppercase tracking-wider bg-red-100 px-3 py-1 rounded-full mb-2">
+                        <i class="fa-solid fa-fire text-amber-500"></i>
+                        <span>ดีลเด็ดประจำสัปดาห์</span>
+                    </div>
+                    <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900">
+                        โปรโมชั่นลดพิเศษ คุ้มค่าทุกวัน
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">สินค้าราคาพิเศษ คัดเฉพาะของที่ทุกบ้านต้องมีติดครัว</p>
+                </div>
+
+                <!-- Timer Badge -->
+                <div class="bg-white px-5 py-3 rounded-2xl border border-emerald-200/80 shadow-sm flex items-center gap-3 shrink-0">
+                    <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                        <i class="fa-solid fa-hourglass-half text-amber-500"></i>
+                        <span>เหลือเวลาอีก:</span>
+                    </span>
+                    <div class="flex items-center gap-1.5 font-heading font-bold text-base text-slate-800">
+                        <span id="sale-hours" class="bg-slate-900 text-white px-2 py-0.5 rounded-md min-w-[28px] text-center">08</span>
+                        <span>:</span>
+                        <span id="sale-mins" class="bg-slate-900 text-white px-2 py-0.5 rounded-md min-w-[28px] text-center">42</span>
+                        <span>:</span>
+                        <span id="sale-secs" class="bg-red-600 text-white px-2 py-0.5 rounded-md min-w-[28px] text-center">15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Promotions Container (Rendered by JS) -->
+            <div id="promotions-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- JS will inject promotion items here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PRODUCT CATALOG -->
+    <section id="products" class="py-14 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-emerald-600 font-semibold text-xs tracking-wider uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                    สินค้าทั้งหมดในร้าน
+                </span>
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-3">
+                    หมวดหมู่สินค้า ธีรภัทร์ มินิมาร์ท
+                </h2>
+                <p class="text-slate-500 text-sm sm:text-base mt-2">
+                    ค้นหาสิ่งที่ต้องการ หรือคลิกเลือกหมวดหมู่เพื่อดูสินค้าได้เลย
+                </p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="mb-8 space-y-4">
+                <!-- Search Input -->
+                <div class="max-w-xl mx-auto relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                        type="text" 
+                        id="product-search" 
+                        placeholder="พิมพ์ค้นหาสินค้า เช่น ไข่ไก่, ข้าวสาร, น้ำมัน, นม, มาม่า..." 
+                        class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm transition-all shadow-inner"
+                    >
+                </div>
+
+                <!-- Category Filter Buttons (Rendered by JS) -->
+                <div id="category-filters" class="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-2 scrollbar-none pt-2">
+                    <!-- JS will inject category filter buttons here -->
+                </div>
+            </div>
+
+            <!-- Products Grid Container (Rendered by JS) -->
+            <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- JS will inject products here -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="empty-search-state" class="hidden text-center py-16 px-4">
+                <div class="w-20 h-20 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-3xl mx-auto mb-4">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-lg text-slate-800">ไม่พบสินค้าที่ค้นหา</h3>
+                <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">
+                    สินค้าที่คุณค้นหาอาจไม่มีในระบบ หรือลองทักสอบถามร้านผ่าน LINE ได้เลยครับ ทางร้านมีสินค้าในสต็อกอีกมากมาย
+                </p>
+                <div class="mt-4 flex justify-center gap-3">
+                    <button onclick="handleSearch(''); document.getElementById('product-search').value='';" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold">
+                        ล้างการค้นหา
+                    </button>
+                    <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="bg-[#06C755] text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
+                        <i class="fa-brands fa-line"></i> ถามร้านใน LINE
+                    </a>
+                </div>
+            </div>
+
+            <!-- Custom Request Banner -->
+            <div class="mt-14 bg-gradient-to-r from-emerald-600 to-teal-700 rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-emerald-700/10">
+                <div class="space-y-2 text-center md:text-left">
+                    <span class="bg-white/20 text-white text-xs font-medium px-3 py-1 rounded-full inline-block">หาของชิ้นไหนไม่เจอ?</span>
+                    <h3 class="font-heading font-bold text-xl sm:text-2xl text-white">ต้องการสั่งสินค้าพิเศษ หรือสั่งจำนวนมาก?</h3>
+                    <p class="text-emerald-100 text-sm max-w-xl">
+                        ร้านธีรภัทร์มีสินค้าราคาส่ง ยกลัง ยกแพ็ก สำหรับงานเลี้ยง งานบุญ หรือร้านอาหาร ทักแชทมาเช็กของและราคาพิเศษได้เลยครับ
+                    </p>
+                </div>
+                <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="shrink-0 bg-white hover:bg-slate-100 text-emerald-800 font-semibold px-6 py-3.5 rounded-2xl shadow-sm transition active:scale-95 flex items-center gap-2">
+                    <i class="fa-brands fa-line text-xl text-[#06C755]"></i>
+                    <span>สอบถามสินค้าใน LINE</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: SERVICES & HIGHLIGHTS -->
+    <section id="services" class="py-14 sm:py-20 bg-slate-50 border-t border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-emerald-600 font-semibold text-xs tracking-wider uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                    บริการของเรา
+                </span>
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-3">
+                    ทำไมต้องเลือก ธีรภัทร์ มินิมาร์ท?
+                </h2>
+                <p class="text-slate-500 text-sm sm:text-base mt-2">
+                    เรามุ่งมั่นให้บริการชาวชุมชนด้วยความจริงใจ สะดวก รวดเร็ว และสินค้าคุณภาพ
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Perk 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mb-1">ส่งฟรีถึงหน้าบ้าน</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        ยอดสั่งซื้อเพียง 100 บาทขึ้นไป จัดส่งฟรีในระยะ 2 กม. และหมู่บ้านใกล้เคียง ไม่ต้องหิ้วให้เมื่อย
+                    </p>
+                </div>
+
+                <!-- Perk 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mb-1">สแกนจ่ายสะดวก</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        รองรับการโอนสแกนผ่าน QR Code ทุกธนาคาร พร้อมเพย์ หรือจะจ่ายเงินสดปลายทางก็ได้ตามสะดวก
+                    </p>
+                </div>
+
+                <!-- Perk 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-egg"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mb-1">ของสดใหม่ทุกวัน</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        ไข่ไก่สดจากฟาร์ม ข้าวสารหอมมะลิคัดพิเศษ และของกินของใช้ตรวจสอบวันหมดอายุสม่ำเสมอ
+                    </p>
+                </div>
+
+                <!-- Perk 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-lg text-slate-900 mb-1">บริการเป็นกันเอง</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        ร้านค้าของชุมชน คนคุ้นเคย พูดคุยง่าย ขาดเหลืออะไรสั่งได้ ดูแลเหมือนคนในครอบครัว
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TESTIMONIALS -->
+    <section class="py-14 sm:py-20 bg-white border-t border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-emerald-600 font-semibold text-xs tracking-wider uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                    เสียงตอบรับจากเพื่อนบ้าน
+                </span>
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-3">
+                    ความประทับใจจากลูกค้าจริงในชุมชน
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">ขอบพระคุณทุกความไว้วางใจที่อุดหนุนธีรภัทร์มินิมาร์ทเสมอมา</p>
+            </div>
+
+            <!-- Testimonials Grid (Rendered by JS) -->
+            <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- JS will inject testimonials here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: STORE INFO, LOCATION & CONTACT -->
+    <section id="contact" class="py-14 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <!-- Left Column: Store Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-emerald-600 font-semibold text-xs tracking-wider uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                            ข้อมูลร้านค้า & ช่องทางติดต่อ
+                        </span>
+                        <h2 class="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mt-3">
+                            แวะมาหน้าร้าน หรือให้เราไปส่ง
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base mt-2">
+                            ร้านตั้งอยู่ทำเลสะดวกสบาย มีที่จอดรถหน้าร้าน พร้อมบริการทุกท่านทุกวัน
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Address -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-semibold text-slate-900 text-sm">ที่อยู่ร้าน</h4>
+                                <p class="text-slate-600 text-xs sm:text-sm mt-0.5 leading-relaxed">
+                                    128/9 ซอยเทศบาล 12 (หน้าหมู่บ้านร่มรื่นสุข) ต.ในเมือง อ.เมือง จ.ขอนแก่น 40000
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Open Hours -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-semibold text-slate-900 text-sm">เวลาเปิด-ปิดทำการ</h4>
+                                <p class="text-slate-600 text-xs sm:text-sm mt-0.5">
+                                    เปิดบริการทุกวันจันทร์ - อาทิตย์ เวลา <strong>06:00 - 22:00 น.</strong>
+                                </p>
+                                <span class="inline-block mt-1 text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded">
+                                    ไม่มีวันหยุดนักขัตฤกษ์
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-semibold text-slate-900 text-sm">เบอร์โทรศัพท์สั่งของ</h4>
+                                <a href="tel:0891234567" class="text-emerald-700 hover:text-emerald-800 font-bold text-base block mt-0.5">
+                                    089-123-4567
+                                </a>
+                                <p class="text-[11px] text-slate-400">กดเพื่อโทรออกได้ทันที</p>
+                            </div>
+                        </div>
+
+                        <!-- LINE ID -->
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-[#06C755]/10 text-[#06C755] flex items-center justify-center shrink-0 text-xl">
+                                <i class="fa-brands fa-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-semibold text-slate-900 text-sm">LINE Official</h4>
+                                <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="text-emerald-700 hover:text-emerald-800 font-bold text-sm block mt-0.5">
+                                    @theeraphat_mart
+                                </a>
+                                <p class="text-[11px] text-slate-400">แอดไลน์รับโปรโมชั่นและสั่งสินค้า</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Map & Message Form -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Embedded Google Map -->
+                    <div class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200/80">
+                        <div class="flex items-center justify-between mb-3 px-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-map-location-dot text-emerald-600"></i>
+                                <span class="font-heading font-semibold text-slate-800 text-sm">แผนที่ตั้งร้าน</span>
+                            </div>
+                            <a href="https://maps.google.com" target="_blank" class="text-xs text-emerald-600 hover:underline flex items-center gap-1">
+                                <span>เปิดใน Google Maps</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden aspect-[16/9] w-full border border-slate-100 shadow-inner">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15312.44976722247!2d102.825!3d16.438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDI2JzE2LjgiTiAxMDLCsDQ5JzMwLjAiRQ!5e0!3m2!1sth!2sth!4v1620000000000!5m2!1sth!2sth" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="แผนที่ร้าน ธีรภัทร์ มินิมาร์ท">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Quick Inquiry Form -->
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80">
+                        <h3 class="font-heading font-semibold text-slate-900 text-base mb-1">
+                            <i class="fa-regular fa-envelope text-emerald-600 mr-1.5"></i>
+                            ส่งข้อความสอบถามทางร้าน
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-4">มีข้อสงสัยเกี่ยวกับสินค้า หรือต้องการแนะนำบริการ ทิ้งข้อความไว้ได้เลยครับ</p>
+                        
+                        <form id="contact-form" class="space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-700 mb-1">ชื่อของคุณ</label>
+                                    <input type="text" required placeholder="เช่น คุณสมชาย" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-700 mb-1">เบอร์โทรศัพท์</label>
+                                    <input type="tel" required placeholder="08x-xxx-xxxx" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-700 mb-1">ข้อความหรือสินค้าที่ต้องการ</label>
+                                <textarea rows="3" required placeholder="พิมพ์ข้อความของคุณที่นี่..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-xl text-sm transition active:scale-95 shadow-sm">
+                                ส่งข้อความ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-800">
+                <!-- Col 1: Store Intro -->
+                <div class="md:col-span-5 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <span class="font-heading font-bold text-xl text-white">ธีรภัทร์ มินิมาร์ท</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+                        ร้านของชำและมินิมาร์ทคู่ใจชุมชน สะดวก สะอาด สดใหม่ ราคากันเอง พร้อมบริการส่งถึงประตูบ้านในระยะ 2 กม.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#06C755] text-white flex items-center justify-center transition" title="LINE">
+                            <i class="fa-brands fa-line text-lg"></i>
+                        </a>
+                        <a href="tel:0891234567" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-600 text-white flex items-center justify-center transition" title="โทร">
+                            <i class="fa-solid fa-phone text-sm"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-white flex items-center justify-center transition" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="md:col-span-3 space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-heading font-semibold text-white text-sm mb-3">เมนูลัด</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-emerald-400 transition">หน้าแรก</a></li>
+                        <li><a href="#how-to-order" class="hover:text-emerald-400 transition">วิธีการสั่งซื้อสินค้า</a></li>
+                        <li><a href="#promotions" class="hover:text-emerald-400 transition">โปรโมชั่นลดราคา</a></li>
+                        <li><a href="#products" class="hover:text-emerald-400 transition">แคตตาล็อกสินค้า</a></li>
+                        <li><a href="#services" class="hover:text-emerald-400 transition">บริการจัดส่ง & เงื่อนไข</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Delivery Policy -->
+                <div class="md:col-span-4 space-y-3 text-xs sm:text-sm">
+                    <h4 class="font-heading font-semibold text-white text-sm mb-3">เงื่อนไขการจัดส่ง</h4>
+                    <p class="text-slate-400 leading-relaxed text-xs">
+                        🛵 <strong>ส่งฟรี:</strong> ยอดสั่งซื้อครบ 100 บาทขึ้นไป ในระยะ 2 กม. (หรือในพื้นที่หมู่บ้านร่มรื่นสุขและใกล้เคียง)<br>
+                        🛵 <strong>ยอดต่ำกว่า 100 บาท:</strong> มีค่าจัดส่งเริ่มต้นเพียง 20 บาท<br>
+                        ⏱️ <strong>รอบจัดส่ง:</strong> จัดส่งทันทีหลังจากได้รับออเดอร์ในเวลา 06:00 - 21:30 น.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+                <p>© 2026 ธีรภัทร์ มินิมาร์ท. All rights reserved.</p>
+                <p class="flex items-center gap-1">
+                    <span>สร้างด้วยความใส่ใจเพื่อชาวชุมชน</span>
+                    <i class="fa-solid fa-heart text-red-500 text-[10px]"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cart-backdrop" class="fixed inset-0 drawer-backdrop z-50 hidden opacity-0 transition-opacity duration-300" onclick="closeCartDrawer()"></div>
+
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                    <i class="fa-solid fa-basket-shopping text-base"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-slate-900 text-base">ตะกร้าสินค้าของคุณ</h3>
+                    <p class="text-[11px] text-slate-500">ตรวจสอบรายการก่อนกดส่งแชท</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="clearCart()" class="text-slate-400 hover:text-red-600 text-xs px-2 py-1 rounded transition" title="ล้างตะกร้า">
+                    ล้าง
+                </button>
+                <button onclick="closeCartDrawer()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Free Delivery Banner in Cart -->
+        <div id="delivery-free-note" class="px-4 py-2 border-b border-slate-100 bg-white">
+            <!-- JS dynamically injects free delivery progress -->
+        </div>
+
+        <!-- Drawer Body: Items List -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-3">
+            <!-- Cart Items Container (Rendered by JS) -->
+            <div id="cart-items-list" class="space-y-3">
+                <!-- JS will inject items -->
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="cart-empty-state" class="py-16 text-center">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-300 flex items-center justify-center text-2xl mx-auto mb-3">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+                <h4 class="font-heading font-semibold text-slate-700 text-sm">ยังไม่มีสินค้าในตะกร้า</h4>
+                <p class="text-xs text-slate-400 mt-1 max-w-xs mx-auto">เลือกดูรายการสินค้าและกด "ใส่ตะกร้า" เพื่อสั่งซื้อผ่าน LINE ได้ง่ายๆ</p>
+                <button onclick="closeCartDrawer()" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-sm">
+                    ไปเลือกดูสินค้า
+                </button>
+            </div>
+        </div>
+
+        <!-- Drawer Footer: Checkout Details -->
+        <div id="cart-footer" class="border-t border-slate-200 p-4 sm:p-5 bg-white space-y-3 hidden">
+            <!-- Summary Lines -->
+            <div class="space-y-1.5 text-xs">
+                <div class="flex justify-between text-slate-500">
+                    <span>รวมราคาสินค้า:</span>
+                    <span id="cart-subtotal" class="font-semibold text-slate-800">฿0</span>
+                </div>
+                <div class="flex justify-between text-slate-500">
+                    <span>ค่าจัดส่ง (ในละแวก 2 กม.):</span>
+                    <span id="cart-delivery-fee" class="font-semibold text-slate-800">฿0</span>
+                </div>
+                <div class="flex justify-between text-sm sm:text-base font-heading font-bold text-slate-900 pt-2 border-t border-slate-100">
+                    <span>ยอดสุทธิทั้งหมด:</span>
+                    <span id="cart-grand-total" class="text-emerald-700 text-lg">฿0</span>
+                </div>
+            </div>
+
+            <!-- Delivery Info Inputs (Optional for convenience) -->
+            <div class="pt-2 border-t border-slate-100 space-y-2">
+                <input 
+                    type="text" 
+                    id="order-address" 
+                    placeholder="บ้านเลขที่ / ซอย / จุดสังเกต (เช่น บ้านสีฟ้าตรงข้ามสวน)" 
+                    class="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                >
+                <div class="grid grid-cols-2 gap-2">
+                    <input 
+                        type="tel" 
+                        id="order-phone" 
+                        placeholder="เบอร์โทรติดต่อกลับ" 
+                        class="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    >
+                    <input 
+                        type="text" 
+                        id="order-note" 
+                        placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)" 
+                        class="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    >
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-2 space-y-2">
+                <button onclick="checkoutViaLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white py-3 px-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 active:scale-95 transition">
+                    <i class="fa-brands fa-line text-xl"></i>
+                    <span>ส่งคำสั่งซื้อผ่าน LINE ทันที</span>
+                </button>
+                <button onclick="copyOrderToClipboard()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 px-3 rounded-xl font-medium text-xs flex items-center justify-center gap-1.5 transition">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>คัดลอกรายการสินค้า (สำหรับส่งแชทอื่น)</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- FLOATING ACTION BUTTONS (MOBILE & DESKTOP) -->
+    <div class="fixed bottom-6 right-5 z-40 flex flex-col gap-3 items-end">
+        <!-- Floating Cart Trigger with Counter Badge -->
+        <button onclick="openCartDrawer()" class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white hover:bg-slate-50 text-emerald-700 shadow-xl border border-emerald-200 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95" title="เปิดตะกร้าสินค้า">
+            <i class="fa-solid fa-basket-shopping text-xl sm:text-2xl"></i>
+            <span id="float-cart-badge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">
+                0
+            </span>
+        </button>
+
+        <!-- Floating Quick Call Button -->
+        <a href="tel:0891234567" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95" title="โทรสั่งทันที">
+            <i class="fa-solid fa-phone text-lg sm:text-xl"></i>
+        </a>
+
+        <!-- Floating LINE Chat Button -->
+        <a href="https://line.me/R/ti/p/@theeraphat_mart" target="_blank" class="line-float-btn w-13 h-13 sm:w-16 sm:h-16 rounded-full bg-[#06C755] text-white shadow-2xl flex items-center justify-center transition-all duration-300" title="แชทสั่งของผ่าน LINE">
+            <i class="fa-brands fa-line text-2xl sm:text-3xl"></i>
+        </a>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
